@@ -1,9 +1,9 @@
 # State
 
-Last updated: 2026-11-22T22:33:39+0800 (system clock)
+Last updated: 2026-11-22T22:38:00+0800 (system clock)
 
 ## Phase
-Phase 3a — verification ladder (L0 to L2, seeded bugs, CI verify, Feature Map, cold start). In progress. Tasks 1 (read and decide) and 2 (domain core, PR #15) are done. Next: task 3 (property tests with fast-check, a Tier 2 change that waits for Luis) and task 4 (one-page UI). Phase 2 is done (gate met 2026-11-22). Phase 3b (L3 smoke on a Vercel preview) waits for Luis to wire Vercel and must finish before Phase 4.
+Phase 3a — verification ladder (L0 to L2, seeded bugs, CI verify, Feature Map, cold start). In progress. Tasks 1 (read and decide) and 2 (domain core, PR #15) are done. Task 3 (fast-check property tests) is open as PR #17 and waits for Luis (Tier 2: package.json, lockfile). Next: task 4 (one-page UI). Weekly quota is 84%: the 85% start gate applies before every task and 90% stops the phase. Phase 2 is done (gate met 2026-11-22). Phase 3b (L3 smoke on a Vercel preview) waits for Luis to wire Vercel and must finish before Phase 4.
 
 Quota at the start of Phase 3 (from `get_usage`): 5-hour window 55% (resets 17:40Z), weekly 82% (resets 2026-11-25 09:00Z). Stop rule: weekly above 90% or 5-hour window used up means mark `paused-quota` here and resume next window.
 
