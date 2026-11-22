@@ -1,11 +1,11 @@
 # State
 
-Last updated: 2026-11-22T22:38:00+0800 (system clock)
+Last updated: 2026-11-22T22:43:04+0800 (system clock)
 
 ## Phase
-Phase 3a — verification ladder (L0 to L2, seeded bugs, CI verify, Feature Map, cold start). In progress. Tasks 1 (read and decide) and 2 (domain core, PR #15) are done. Task 3 (fast-check property tests) is open as PR #17 and waits for Luis (Tier 2: package.json, lockfile). Next: task 4 (one-page UI). Weekly quota is 84%: the 85% start gate applies before every task and 90% stops the phase. Phase 2 is done (gate met 2026-11-22). Phase 3b (L3 smoke on a Vercel preview) waits for Luis to wire Vercel and must finish before Phase 4.
+Phase 3a — verification ladder. **Waiting for Luis (quota gate)**: weekly window is 85% after task 4, so no new task starts (gate: do not start at 85% or more, stop at 90%). Tasks 1 (read and decide), 2 (domain core, PR #15), 3 (property tests, PR #17) and 4 (one-page UI, in the PR that carries this line) are done. Next when Luis says go: task 5 (verify CLI and verification skill, Tier 2). The weekly window resets 2026-11-25 09:00Z. Phase 3b (L3 smoke on a Vercel preview) waits for Luis to wire Vercel and must finish before Phase 4.
 
-Quota at the start of Phase 3 (from `get_usage`): 5-hour window 55% (resets 17:40Z), weekly 82% (resets 2026-11-25 09:00Z). Stop rule: weekly above 90% or 5-hour window used up means mark `paused-quota` here and resume next window.
+Quota: at the start of Phase 3 the 5-hour window was 55% and the weekly window 82%; after task 4 they are 74% and 85% (from `get_usage`). Measured cost per headless task (list price): task 2 0.60 USD, task 3 0.48 USD, task 4 0.57 USD. Stop rule: weekly above 90% or the 5-hour window used up means mark `paused-quota` here and resume next window.
 
 ## Done
 - Repo: https://github.com/doppelgengar9837/tabsplit (public)
