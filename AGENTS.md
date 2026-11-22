@@ -39,9 +39,22 @@ Data lives in browser localStorage. No backend, no accounts.
 - When unsure, pick a reasoned default, record it, and continue. Do not stall waiting for an answer.
   If truly blocked, say so in `docs/ai/state.md` and move to the next independent task.
 
+## Human gates (these override pstack)
+pstack says external actions "proceed without asking" (`poteto-mode` Autonomy, `worker.md`). That does not apply to:
+merging, approving, changing the ruleset or any setting or configuration, publishing, spending money, touching credentials.
+AGENTS.md and the phase gates decide those.
+When work reaches one of these actions: do not do it, and do not stop to ask. Mark the task `blocked` in
+`docs/ai/state.md`, name the human gate it needs, and move to the next independent task.
+Only an action that the current phase task list or Luis's message names exactly (for example "squash merge after CI is green")
+is authorized, and only for that task.
+
 ## Definition of done
 Branch -> PR with a Conventional Commits title -> `check` and `conventional-title` green -> squash merge.
 Update `docs/ai/state.md` when a phase gate or the current status changes.
 
-## Not installed yet
-pstack (`/poteto-mode`, playbooks, verification skills) arrives in Phase 2. Until then work is guided by hand.
+## pstack
+Installed at project scope (Phase 2): `pstack@cursor-plugins` 0.15.46, marketplace pinned in `.claude/settings.json`
+to upstream commit `7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9`. Needs Claude Code 2.1.324 or newer to load the pin.
+Source review: `docs/ai/pstack-source-review.md`. Do not use `make-bot-ui` (it runs `curl | sudo sh`) or `watch-pr`
+(its first run does a network `bun install`; it needs its own review before Phase 5).
+`cursor-team-kit` is not installed, so steps that call `/deslop` or `control-*` are skipped and noted.
