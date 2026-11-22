@@ -8,7 +8,7 @@ Status: accepted (Phase 1)
 - **ESLint (flat config, typescript-eslint, react-hooks)**: also carries our determinism ban (see ADR 0002).
 - **Vitest + jsdom + Testing Library**: shares Vite config; fast unit tests, including later property tests for money.
 - **Playwright**: browser journeys from Phase 3. Config is wired now; no journeys yet.
-- **commitlint + husky**: Conventional Commits locally; the same commitlint check runs on PR titles in CI. Hooks live in tracked `.husky/`.
+- **commitlint + tracked git hooks**: Conventional Commits locally; the same commitlint check runs on PR titles in CI. Hooks are plain scripts in tracked `.husky/`; `pnpm install` runs `scripts/prepare.mjs`, which sets `core.hooksPath=.husky`. The husky package is not used (Phase 1.5: its default `.husky/_` is untracked, so new worktrees silently ran no hooks).
 - **TypeScript pinned to 6.x**: typescript-eslint 8.73 refuses to run on TypeScript 7.0. Revisit when typescript-eslint supports >= 7.1; upgrading is a Tier 2 change.
 
 ## Notes
