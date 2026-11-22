@@ -1,6 +1,6 @@
 # State
 
-Last updated: 2026-11-22T22:12:47+0800 (system clock)
+Last updated: 2026-11-22T22:16:31+0800 (system clock)
 
 ## Phase
 Phase 2 — install and reconstruct pstack. **Gate met** (checklist confirmed by Luis; every deviation has a decisions row; trial run documented in `docs/ai/pstack-trial-run.md`; both compatibility answers written). The task 8 PR closes the phase. Next: Phase 3 (verification ladder), to be started by Luis.
@@ -12,13 +12,13 @@ Phase 2 — install and reconstruct pstack. **Gate met** (checklist confirmed by
 - docs/ai: plan, state, decisions.tsv (pnpm decision), ADR 0001 tooling, ADR 0002 integer money + Clock, pstack-source-review.md, pstack-playbooks.md (restoration checklist, confirmed), pstack-trial-run.md; AGENTS.md (human gates, pstack section), CLAUDE.md pointer
 - CI: check (lint, typecheck, unit, build) and conventional-title; green on main
 - Ruleset main-protection active (id 27842458): PR required, squash only, linear history, strict required checks, no deletion/force-push, no bypass
-- pstack: `pstack@cursor-plugins` 0.15.46 at project scope, marketplace pinned in .claude/settings.json to 7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9 (needs Claude Code 2.1.324+); model rule .claude/rules/pstack-models.md at budget medium; one real /pstack:poteto-mode trial run (PR #8)
+- pstack: `pstack@cursor-plugins` 0.15.46 at project scope, marketplace pinned in .claude/settings.json to 7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9 (needs Claude Code 2.1.324+); model rule .claude/rules/pstack-models.md at budget small, no fable seats, panels cut to one opus seat plus inherit-parent; one real /pstack:poteto-mode trial run (PR #8)
 
 ## Not started
 Phases 3-7. No GitHub App. No Vercel. No e2e/verify CI jobs (Phase 3). No CODEOWNERS (Phase 4).
 
 ## Open items (need Luis)
-- **Lower or change `.claude/rules/pstack-models.md`?** The trial cost about 3.10 USD list price and moved the 5-hour quota window from 32% to 42%; the 7-day window was already at 78-80% (warning threshold 75%). `fable` is not available on this plan (429, needs usage credits) but two panels still list it. Options are in the OPEN decisions row. The file is unchanged.
+- **Re-tune `.claude/rules/pstack-models.md` after Phase 3** (open decision). Luis set it to budget small with no fable seats (fable returns 429 on this plan; the trial cost about 3.10 USD list price and moved the 5-hour quota window 32% to 42%). Revisit once Phase 3 has measured cost per PR, and re-check fable then.
 - **Remove the trial worktree** `.claude/worktrees/feat-format-money` (locked, has a `.pnpm-store/`)? Deleting it is data deletion, so it waits for Luis. `.claude/worktrees/` is now gitignored.
 - Phase 4 (open decision): the pstack plugin cache is user-level and keyed by version; a cloud bot needs a reinstall via the pinned marketplace or vendoring. See decisions.tsv.
 - `watch-pr` needs its own review before Phase 5 (its first run does a network `bun install`).

@@ -100,7 +100,7 @@ Our addition (our design): the PR `## Why` carries one line per cited principle,
 
 - **Skills (58):** 24 principles plus 34 others: architect, arena, automate-me, benchmark-checklist, blast-radius, bro, correct, create-formal-verification-skill, create-verification-skill, figure-it-out, how, in-your-own-words, interrogate, ketchup, ketchup-video, maintain-formal-verification-skill, maintain-verification-skill, make-bot-ui, no-comments, poteto-help, poteto-mode, recall, reflect, setup-pstack, sharpen, show-me-your-work, statechart, swarm, tdd, teach, technical-writing, typescript-best-practices, unslop, why. Phase 3 uses `create-verification-skill` and `maintain-verification-skill`.
 - **Subagents (2):** `pstack:poteto-agent` (delegate; no tool limits, so it inherits the session's tools and permissions; its frontmatter holds a Cursor model slug, so always pass `model` and `effort`) and `pstack:comment-sicko` (reports comments to delete; never writes application code).
-- **Models:** `.claude/rules/pstack-models.md`, budget medium. Panels (`arena`, `interrogate`) fan out three agents each: avoid them for small tasks. `fable` seats return 429 on this plan (needs usage credits), so the panels fail as configured until Luis decides what to change.
+- **Models:** `.claude/rules/pstack-models.md`, budget small (decided after the trial; no fable seats because fable returns 429 on this plan). Roles that defaulted to xhigh run `opus medium`, swarm workers and panel seats run `opus low`, and the `arena` and `interrogate` panels hold one opus seat plus `inherit-parent`. Panels still fan out two agents each and Claude models are one vendor, so cross-model judging is weak: avoid them for small tasks. Re-tune after Phase 3 measures cost per PR.
 - **Banned:**
   - `make-bot-ui`: runs `curl -fsSL ... | sudo sh`, `sudo tailscale up`, and binds a server to `0.0.0.0`.
   - `watch-pr` (and so `babysit`, `shipping` step 5, autopilot): its first run does a network `bun install` in the plugin directory. Needs its own review before Phase 5.
@@ -152,4 +152,4 @@ Other `show-me-your-work` rules we keep: append-only (a wrong call gets a supers
 - `watch-pr` needs a separate review before Phase 5.
 - Plugin cache is user-level and keyed by version: Phase 4 decision (see decisions.tsv).
 - The six unread playbooks are read before first use.
-- Open for Luis: lower or change `pstack-models.md`; remove the trial worktree. See `state.md`.
+- Open (Phase 3): re-tune `pstack-models.md` once cost per PR is measured. See `state.md`.

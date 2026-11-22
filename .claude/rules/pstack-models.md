@@ -1,13 +1,13 @@
 # pstack model configuration. One line per role. Delete a line to fall back to the skill default.
 # `inherit-parent` or `auto` as a value: the role runs on the parent chat model (omit the Agent `model` and spawn `general-purpose`). Alias entries in a panel list still count toward its fan-out.
 # defaults: 3
-# budget: medium (high)
-feature, refactoring: opus high
-bug-fix: opus high
-perf-issue: opus high
-hillclimb: opus high
-judgment and prose: opus high
-arena runners: fable medium, opus medium, inherit-parent
-arena cross-judge pool: opus medium, inherit-parent
-swarm workers: opus medium
-interrogate reviewers: fable medium, opus medium, inherit-parent
+# budget: small (medium)
+feature, refactoring: opus medium
+bug-fix: opus medium
+perf-issue: opus medium
+hillclimb: opus medium
+judgment and prose: opus medium
+arena runners: opus low, inherit-parent
+arena cross-judge pool: opus low, inherit-parent
+swarm workers: opus low
+interrogate reviewers: opus low, inherit-parent
