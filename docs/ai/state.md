@@ -1,9 +1,9 @@
 # State
 
-Last updated: 2026-11-22T21:57:41+0800 (system clock)
+Last updated: 2026-11-22T22:05:17+0800 (system clock)
 
 ## Phase
-Phase 2 — install and reconstruct pstack. Tasks 0-6 done: pstack installed and pinned, model rule at budget medium, restoration checklist `docs/ai/pstack-playbooks.md` written (awaiting Luis confirmation). Next: task 7 (trial run with /pstack:poteto-mode: formatMoney), then task 8.
+Phase 2 — install and reconstruct pstack. Tasks 0-6 done: pstack installed and pinned, model rule at budget medium, restoration checklist `docs/ai/pstack-playbooks.md` written (awaiting Luis confirmation). Task 7 (trial run with /pstack:poteto-mode): `formatMoney` in `src/money.ts`, delivered by the PR that carries this line, squash-merged by the agent under Luis's one-PR authorization once `check` and `conventional-title` were green. Next: task 8.
 
 ## Done
 - Repo: https://github.com/doppelgengar9837/tabsplit (public)
@@ -15,9 +15,10 @@ Phase 2 — install and reconstruct pstack. Tasks 0-6 done: pstack installed and
 - Drill: PR #1 squash-merged; direct push to main rejected
 
 ## Not started
-Phases 3-7. pstack is installed (project scope, pinned to 7a58391) but not yet configured or trial-run. No GitHub App. No Vercel. No e2e/verify CI jobs (Phase 3). No CODEOWNERS (Phase 4).
+Phases 3-7. pstack is installed (project scope, pinned to 7a58391), configured and trial-run once (task 7). No GitHub App. No Vercel. No e2e/verify CI jobs (Phase 3). No CODEOWNERS (Phase 4).
 
 ## Open items
+- Needs Luis (config change, human gate): `core.hooksPath` is the absolute `/Users/luis/develop/gengar/tabsplit/.husky`, not `.husky`. So `scripts/prepare.mjs` tries to rewrite `.git/config` on every install, the sandbox blocks it, and pnpm's deps check then fails every `pnpm <script>` in a fresh worktree. Workaround: `pnpm install --frozen-lockfile --ignore-scripts`. Fix: `git config core.hooksPath .husky`. See decisions.tsv.
 - Phase 4 (open decision): the pstack plugin cache is user-level and keyed by version; a cloud bot needs a reinstall via the pinned marketplace or vendoring. See decisions.tsv.
 - (none) Task 10 passed 2026-11-22: Luis confirmed `gh auth status` shows doppelgengar9837 in a normal terminal, with `GH_CONFIG_DIR` provided by `.claude/settings.local.json`.
 
