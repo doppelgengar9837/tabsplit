@@ -1,9 +1,9 @@
 # State
 
-Last updated: 2026-11-22T21:33:28+0800 (system clock)
+Last updated: 2026-11-22T21:45:39+0800 (system clock)
 
 ## Phase
-Phase 1 — repo birth and skeleton. **Complete** (gate met). Phase 1.5 (hardening) in progress via the chore/phase-1-5-hardening PR. Next: Phase 2 (install and reconstruct pstack), to be started by Luis.
+Phase 2 — install and reconstruct pstack. **Paused at task 3** (human gate): waiting for Luis to confirm D2. Nothing is installed yet.
 
 ## Done
 - Repo: https://github.com/doppelgengar9837/tabsplit (public)
@@ -18,7 +18,8 @@ Phase 1 — repo birth and skeleton. **Complete** (gate met). Phase 1.5 (hardeni
 Phases 2-7. pstack is NOT installed. No GitHub App. No Vercel. No e2e/verify CI jobs (Phase 3). No CODEOWNERS (Phase 4).
 
 ## Open items
-- Task 10 verification pending: Luis runs `gh auth status` in a freshly opened desktop-app session and confirms it shows doppelgengar9837 only.
+- Task 3 / D2: confirm pstack source and pin. Recommendation and evidence: `docs/ai/pstack-source-review.md` (A: upstream cursor/plugins pstack 0.15.46 at 7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9).
+- (none) Task 10 passed 2026-11-22: Luis confirmed `gh auth status` shows doppelgengar9837 in a normal terminal, with `GH_CONFIG_DIR` provided by `.claude/settings.local.json`.
 
 ## Known caveats
 - Human-present session: PR author is gengar. Switch to a bot identity before unattended runs (Phase 4).
