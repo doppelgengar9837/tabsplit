@@ -32,6 +32,7 @@ Data lives in browser localStorage. No backend, no accounts.
 ## Decisions and deviations
 - Every important decision gets one row in `docs/ai/decisions.tsv` via `pnpm decision`.
   Never write the time yourself: the command stamps it from `/bin/date`.
+  The time column is the recording time (when the row was written), not the time the event happened.
 - Write the row the moment the decision is made, with `pnpm decision`. Never batch-write rows afterwards:
   the time column is the recording time, so late batches misdate the decisions. If the outcome is not known yet,
   write the row now and add a second row when it is.
