@@ -1,6 +1,6 @@
 # pstack playbooks: restoration checklist
 
-Status: draft for Luis to confirm (Phase 2 gate 1). Source: `docs/ai/pstack-source-review.md`.
+Status: confirmed by Luis on 2026-11-22 (Phase 2 gate 1). Trial run results: `docs/ai/pstack-trial-run.md`. Source: `docs/ai/pstack-source-review.md`.
 Installed: `pstack@cursor-plugins` 0.15.46, project scope, marketplace pinned to upstream `7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9`.
 Rows in `docs/ai/decisions.tsv` (phase 2) hold the reason and rollback for every deviation named here.
 
@@ -82,7 +82,7 @@ Our addition (our design): the PR `## Why` carries one line per cited principle,
 |---|---|---|
 | `investigation` | available, read | read-only; no PR |
 | `bug-fix` | available, read | the control surface is our verify skill from Phase 3. Until then proof is unit tests plus a manual check, and "inconclusive" is reported as such. Cursor `/loop` = Claude Code `/loop` |
-| `feature` | available, read | mandates delegating code-writing to a subagent and `arena` when several shapes are valid. Expensive for tiny tasks; the trial run measures it |
+| `feature` | available, read | mandates delegating code-writing to a subagent and `arena` when several shapes are valid. Expensive for tiny tasks. Trial: one `pstack:poteto-agent` at effort low, no arena, about 3.10 USD list price (details in `pstack-trial-run.md`) |
 | `refactoring` | available, read | pin behavior first |
 | `prototype` | available, read | throwaway work goes in a scratch dir outside the repo |
 | `multi-phase-plan` | available, read | the plan is the deliverable; execution starts on an explicit go |
@@ -100,7 +100,7 @@ Our addition (our design): the PR `## Why` carries one line per cited principle,
 
 - **Skills (58):** 24 principles plus 34 others: architect, arena, automate-me, benchmark-checklist, blast-radius, bro, correct, create-formal-verification-skill, create-verification-skill, figure-it-out, how, in-your-own-words, interrogate, ketchup, ketchup-video, maintain-formal-verification-skill, maintain-verification-skill, make-bot-ui, no-comments, poteto-help, poteto-mode, recall, reflect, setup-pstack, sharpen, show-me-your-work, statechart, swarm, tdd, teach, technical-writing, typescript-best-practices, unslop, why. Phase 3 uses `create-verification-skill` and `maintain-verification-skill`.
 - **Subagents (2):** `pstack:poteto-agent` (delegate; no tool limits, so it inherits the session's tools and permissions; its frontmatter holds a Cursor model slug, so always pass `model` and `effort`) and `pstack:comment-sicko` (reports comments to delete; never writes application code).
-- **Models:** `.claude/rules/pstack-models.md`, budget medium. Panels (`arena`, `interrogate`) fan out three agents each: avoid them for small tasks.
+- **Models:** `.claude/rules/pstack-models.md`, budget medium. Panels (`arena`, `interrogate`) fan out three agents each: avoid them for small tasks. `fable` seats return 429 on this plan (needs usage credits), so the panels fail as configured until Luis decides what to change.
 - **Banned:**
   - `make-bot-ui`: runs `curl -fsSL ... | sudo sh`, `sudo tailscale up`, and binds a server to `0.0.0.0`.
   - `watch-pr` (and so `babysit`, `shipping` step 5, autopilot): its first run does a network `bun install` in the plugin directory. Needs its own review before Phase 5.
@@ -127,6 +127,7 @@ It cannot take control by itself: no hook, no auto-activation, and it runs only 
 | C8 | PR title `type(scope): subject`, body under 40 lines with fixed `##` headings, ready not draft | Conventional Commits, PR title check in CI | compatible; scope is optional for us, required by pstack's wording |
 | C9 | copy steps into the todolist tool | this app's `update_plan` | mapped |
 | C10 | commits: "commit liberally", small ordered commits | pre-commit runs lint and typecheck on every commit | compatible; every commit must pass both |
+| C11 | Claude Code worktrees live under `.claude/worktrees/` and appear to set an absolute `core.hooksPath` | `scripts/prepare.mjs` expected the literal `.husky` and failed in a sandboxed worktree | found in the trial; `prepare.mjs` now accepts this or the main checkout's `.husky`; `.claude/worktrees/` is gitignored |
 
 Verdict: no conflict blocks use. C1, C2 and C3 needed explicit rules (added to `AGENTS.md` and recorded). C1 is the one that matters: it is enforced only by text until Phase 4.
 
@@ -151,3 +152,4 @@ Other `show-me-your-work` rules we keep: append-only (a wrong call gets a supers
 - `watch-pr` needs a separate review before Phase 5.
 - Plugin cache is user-level and keyed by version: Phase 4 decision (see decisions.tsv).
 - The six unread playbooks are read before first use.
+- Open for Luis: lower or change `pstack-models.md`; remove the trial worktree. See `state.md`.

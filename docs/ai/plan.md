@@ -19,7 +19,8 @@ Success = "can go to sleep": queue tasks, wake up to merged / awaiting async app
 |---|---|---|
 | 0 | develop/ layout, per-folder account isolation | Done (phase0.sh verify 8/8) |
 | 1 | Repo + walking skeleton, CI, ruleset, AGENTS.md, docs/ai | Empty change completes branch -> PR -> CI green -> merge; plan, state, decisions in repo |
-| 2 | Install and reconstruct pstack (read first, pin commit, playbook checklist, trial run) | Checklist confirmed by Luis; each deviation recorded; trial matches SKILL.md |
+| 1.5 | Hardening: hooks wired through tracked .husky, decision-timing rule, branch cleanup | Done 2026-11-22 (PR #3) |
+| 2 | Install and reconstruct pstack (read first, pin commit, playbook checklist, trial run) | **Done 2026-11-22.** Checklist confirmed by Luis; each deviation recorded; trial matches SKILL.md apart from the recorded differences |
 | 3 | Verification ladder (lint/type, unit, browser journey, preview smoke), seeded-bug set | 100% of seeded bugs caught; reproducible; Feature Map drift detected |
 | 4 | Guardrails and bot identity (GitHub App, CODEOWNERS, suppression ratchet, tiers, budget, halt) | Bot can open PRs; cannot touch ruleset, approve own PR, push main, or read secrets |
 | 5 | Issue queue and autopilot | 4 of 5 consecutive tasks reach mergeable; failures stop with reason |
@@ -36,4 +37,4 @@ Tiers (our design): docs/style = Tier 0; features/fixes = Tier 1; dependencies, 
 Agent never waits for an answer: choose a reasoned default, record it with rollback, continue; mark `blocked` only if truly stuck and move on. Human gates: Tier 2 PR approval, morning sampling, `halt` switch. Same failure past the retry cap -> stop and leave diagnostics. Every human intervention gets a reason code.
 
 ## Current status
-See `state.md`.
+Phase 2 is done; Phase 3 is next and is started by Luis. Details and open items: `state.md`.
