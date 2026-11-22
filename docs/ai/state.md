@@ -1,9 +1,9 @@
 # State
 
-Last updated: 2026-11-22T21:52:40+0800 (system clock)
+Last updated: 2026-11-22T21:57:41+0800 (system clock)
 
 ## Phase
-Phase 2 — install and reconstruct pstack. Tasks 0-4 done (D2 confirmed by Luis; pstack installed and pinned). Next: task 5 (setup-pstack, budget medium), 6 (playbooks checklist), 7 (trial run), 8 (wrap-up).
+Phase 2 — install and reconstruct pstack. Tasks 0-6 done: pstack installed and pinned, model rule at budget medium, restoration checklist `docs/ai/pstack-playbooks.md` written (awaiting Luis confirmation). Next: task 7 (trial run with /pstack:poteto-mode: formatMoney), then task 8.
 
 ## Done
 - Repo: https://github.com/doppelgengar9837/tabsplit (public)

@@ -58,3 +58,5 @@ to upstream commit `7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9`. Needs Claude Code
 Source review: `docs/ai/pstack-source-review.md`. Do not use `make-bot-ui` (it runs `curl | sudo sh`) or `watch-pr`
 (its first run does a network `bun install`; it needs its own review before Phase 5).
 `cursor-team-kit` is not installed, so steps that call `/deslop` or `control-*` are skipped and noted.
+The decision log is `pnpm decision` (not `log.sh`). A pause commit is `chore(wip):` because commitlint rejects `wip:`.
+Restoration checklist, playbook status and bans: `docs/ai/pstack-playbooks.md`.
