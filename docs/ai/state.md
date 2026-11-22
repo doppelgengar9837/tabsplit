@@ -1,9 +1,9 @@
 # State
 
-Last updated: 2026-11-22T21:45:39+0800 (system clock)
+Last updated: 2026-11-22T21:52:40+0800 (system clock)
 
 ## Phase
-Phase 2 — install and reconstruct pstack. **Paused at task 3** (human gate): waiting for Luis to confirm D2. Nothing is installed yet.
+Phase 2 — install and reconstruct pstack. Tasks 0-4 done (D2 confirmed by Luis; pstack installed and pinned). Next: task 5 (setup-pstack, budget medium), 6 (playbooks checklist), 7 (trial run), 8 (wrap-up).
 
 ## Done
 - Repo: https://github.com/doppelgengar9837/tabsplit (public)
@@ -15,10 +15,10 @@ Phase 2 — install and reconstruct pstack. **Paused at task 3** (human gate): w
 - Drill: PR #1 squash-merged; direct push to main rejected
 
 ## Not started
-Phases 2-7. pstack is NOT installed. No GitHub App. No Vercel. No e2e/verify CI jobs (Phase 3). No CODEOWNERS (Phase 4).
+Phases 3-7. pstack is installed (project scope, pinned to 7a58391) but not yet configured or trial-run. No GitHub App. No Vercel. No e2e/verify CI jobs (Phase 3). No CODEOWNERS (Phase 4).
 
 ## Open items
-- Task 3 / D2: confirm pstack source and pin. Recommendation and evidence: `docs/ai/pstack-source-review.md` (A: upstream cursor/plugins pstack 0.15.46 at 7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9).
+- Phase 4 (open decision): the pstack plugin cache is user-level and keyed by version; a cloud bot needs a reinstall via the pinned marketplace or vendoring. See decisions.tsv.
 - (none) Task 10 passed 2026-11-22: Luis confirmed `gh auth status` shows doppelgengar9837 in a normal terminal, with `GH_CONFIG_DIR` provided by `.claude/settings.local.json`.
 
 ## Known caveats
