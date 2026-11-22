@@ -9,3 +9,5 @@ test-results
 !.env.example
 # local, per-machine Claude settings (contains local paths)
 .claude/settings.local.json
+# worktrees created by Claude Code (EnterWorktree)
+.claude/worktrees/

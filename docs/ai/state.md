@@ -1,30 +1,32 @@
 # State
 
-Last updated: 2026-11-22T22:05:17+0800 (system clock)
+Last updated: 2026-11-22T22:12:47+0800 (system clock)
 
 ## Phase
-Phase 2 — install and reconstruct pstack. Tasks 0-6 done: pstack installed and pinned, model rule at budget medium, restoration checklist `docs/ai/pstack-playbooks.md` written (awaiting Luis confirmation). Task 7 (trial run with /pstack:poteto-mode): `formatMoney` in `src/money.ts`, delivered by the PR that carries this line, squash-merged by the agent under Luis's one-PR authorization once `check` and `conventional-title` were green. Next: task 8.
+Phase 2 — install and reconstruct pstack. **Gate met** (checklist confirmed by Luis; every deviation has a decisions row; trial run documented in `docs/ai/pstack-trial-run.md`; both compatibility answers written). The task 8 PR closes the phase. Next: Phase 3 (verification ladder), to be started by Luis.
 
 ## Done
 - Repo: https://github.com/doppelgengar9837/tabsplit (public)
-- Skeleton on main: Vite + React + TypeScript (strict, TS 6.x), ESLint with Clock-only bans, Vitest, Playwright config (no journeys), localStorage empty form
-- commitlint + tracked git hooks in .husky/ (commit-msg, pre-commit lint+typecheck); `pnpm install` runs scripts/prepare.mjs to set core.hooksPath=.husky (Phase 1.5)
-- docs/ai: plan, state, decisions.tsv (pnpm decision), ADR 0001 tooling, ADR 0002 integer money + Clock; AGENTS.md (44 lines), CLAUDE.md pointer
+- Skeleton on main: Vite + React + TypeScript (strict, TS 6.x), ESLint with Clock-only bans, Vitest, Playwright config (no journeys), localStorage empty form, `formatMoney` in `src/money.ts` (Phase 2 trial, PR #8)
+- commitlint + tracked git hooks in .husky/ (commit-msg, pre-commit lint+typecheck); `pnpm install` runs scripts/prepare.mjs, which wires core.hooksPath to .husky (a relative path, or an absolute path to this or the main checkout's .husky, is accepted)
+- docs/ai: plan, state, decisions.tsv (pnpm decision), ADR 0001 tooling, ADR 0002 integer money + Clock, pstack-source-review.md, pstack-playbooks.md (restoration checklist, confirmed), pstack-trial-run.md; AGENTS.md (human gates, pstack section), CLAUDE.md pointer
 - CI: check (lint, typecheck, unit, build) and conventional-title; green on main
 - Ruleset main-protection active (id 27842458): PR required, squash only, linear history, strict required checks, no deletion/force-push, no bypass
-- Drill: PR #1 squash-merged; direct push to main rejected
+- pstack: `pstack@cursor-plugins` 0.15.46 at project scope, marketplace pinned in .claude/settings.json to 7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9 (needs Claude Code 2.1.324+); model rule .claude/rules/pstack-models.md at budget medium; one real /pstack:poteto-mode trial run (PR #8)
 
 ## Not started
-Phases 3-7. pstack is installed (project scope, pinned to 7a58391), configured and trial-run once (task 7). No GitHub App. No Vercel. No e2e/verify CI jobs (Phase 3). No CODEOWNERS (Phase 4).
+Phases 3-7. No GitHub App. No Vercel. No e2e/verify CI jobs (Phase 3). No CODEOWNERS (Phase 4).
 
-## Open items
-- Needs Luis (config change, human gate): `core.hooksPath` is the absolute `/Users/luis/develop/gengar/tabsplit/.husky`, not `.husky`. So `scripts/prepare.mjs` tries to rewrite `.git/config` on every install, the sandbox blocks it, and pnpm's deps check then fails every `pnpm <script>` in a fresh worktree. Workaround: `pnpm install --frozen-lockfile --ignore-scripts`. Fix: `git config core.hooksPath .husky`. See decisions.tsv.
+## Open items (need Luis)
+- **Lower or change `.claude/rules/pstack-models.md`?** The trial cost about 3.10 USD list price and moved the 5-hour quota window from 32% to 42%; the 7-day window was already at 78-80% (warning threshold 75%). `fable` is not available on this plan (429, needs usage credits) but two panels still list it. Options are in the OPEN decisions row. The file is unchanged.
+- **Remove the trial worktree** `.claude/worktrees/feat-format-money` (locked, has a `.pnpm-store/`)? Deleting it is data deletion, so it waits for Luis. `.claude/worktrees/` is now gitignored.
 - Phase 4 (open decision): the pstack plugin cache is user-level and keyed by version; a cloud bot needs a reinstall via the pinned marketplace or vendoring. See decisions.tsv.
-- (none) Task 10 passed 2026-11-22: Luis confirmed `gh auth status` shows doppelgengar9837 in a normal terminal, with `GH_CONFIG_DIR` provided by `.claude/settings.local.json`.
+- `watch-pr` needs its own review before Phase 5 (its first run does a network `bun install`).
 
 ## Known caveats
 - Human-present session: PR author is gengar. Switch to a bot identity before unattended runs (Phase 4).
+- "Merging is a human gate" is enforced by AGENTS.md text only until Phase 4; the trial showed it was followed once, which is not proof.
 - gh must run outside the Claude sandbox (keyring is unreadable inside it).
 - .claude/settings.local.json is per-machine and takes effect only for new sessions.
-- Repo-level merge/rebase merges are still enabled; only the ruleset forces squash.
-- Repo setting delete_branch_on_merge is on: merged PR head branches are deleted automatically.
+- Local core.hooksPath is currently the absolute path to the main checkout's .husky (set by something other than prepare.mjs, inferred to be Claude Code worktree creation). It works and prepare.mjs accepts it.
+- Repo-level merge/rebase merges are still enabled; only the ruleset forces squash. Repo setting delete_branch_on_merge is on.
