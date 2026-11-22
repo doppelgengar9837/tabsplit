@@ -1,9 +1,11 @@
 # State
 
-Last updated: 2026-11-22T22:16:31+0800 (system clock)
+Last updated: 2026-11-22T22:24:04+0800 (system clock)
 
 ## Phase
-Phase 2 — install and reconstruct pstack. **Gate met** (checklist confirmed by Luis; every deviation has a decisions row; trial run documented in `docs/ai/pstack-trial-run.md`; both compatibility answers written). The task 8 PR closes the phase. Next: Phase 3 (verification ladder), to be started by Luis.
+Phase 3a — verification ladder (L0 to L2, seeded bugs, CI verify, Feature Map, cold start). In progress. Task 1 (read and decide) is in the PR that carries this line; next is task 2 (domain core). Phase 2 is done (gate met 2026-11-22). Phase 3b (L3 smoke on a Vercel preview) waits for Luis to wire Vercel and must finish before Phase 4.
+
+Quota at the start of Phase 3 (from `get_usage`): 5-hour window 55% (resets 17:40Z), weekly 82% (resets 2026-11-25 09:00Z). Stop rule: weekly above 90% or 5-hour window used up means mark `paused-quota` here and resume next window.
 
 ## Done
 - Repo: https://github.com/doppelgengar9837/tabsplit (public)
@@ -15,7 +17,7 @@ Phase 2 — install and reconstruct pstack. **Gate met** (checklist confirmed by
 - pstack: `pstack@cursor-plugins` 0.15.46 at project scope, marketplace pinned in .claude/settings.json to 7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9 (needs Claude Code 2.1.324+); model rule .claude/rules/pstack-models.md at budget small, no fable seats, panels cut to one opus seat plus inherit-parent; one real /pstack:poteto-mode trial run (PR #8)
 
 ## Not started
-Phases 3-7. No GitHub App. No Vercel. No e2e/verify CI jobs (Phase 3). No CODEOWNERS (Phase 4).
+Phase 3b and Phases 4-7. No GitHub App. No Vercel. No e2e/verify CI jobs (Phase 3). No CODEOWNERS (Phase 4).
 
 ## Open items (need Luis)
 - **Re-tune `.claude/rules/pstack-models.md` after Phase 3** (open decision). Luis set it to budget small with no fable seats (fable returns 429 on this plan; the trial cost about 3.10 USD list price and moved the 5-hour quota window 32% to 42%). Revisit once Phase 3 has measured cost per PR, and re-check fable then.
