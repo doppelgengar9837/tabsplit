@@ -1,9 +1,9 @@
 # State
 
-Last updated: 2026-11-22T22:43:04+0800 (system clock)
+Last updated: 2026-11-22T22:45:47+0800 (system clock)
 
 ## Phase
-Phase 3a — verification ladder. **Waiting for Luis (quota gate)**: weekly window is 85% after task 4, so no new task starts (gate: do not start at 85% or more, stop at 90%). Tasks 1 (read and decide), 2 (domain core, PR #15), 3 (property tests, PR #17) and 4 (one-page UI, in the PR that carries this line) are done. Next when Luis says go: task 5 (verify CLI and verification skill, Tier 2). The weekly window resets 2026-11-25 09:00Z. Phase 3b (L3 smoke on a Vercel preview) waits for Luis to wire Vercel and must finish before Phase 4.
+Phase 3a — verification ladder. **Paused by Luis (quota gate)**: weekly window was 85% after task 4. Tasks 1 to 4 are done and merged (read and decide, domain core PR #15, property tests PR #17, one-page UI PR #18). Task 5 (verify CLI and verification skill, Tier 2) resumes after the weekly reset (2026-11-25 09:00Z) in a **fresh session**: start from `docs/ai/phase3-resume.md`. No new task starts before then. Phase 3b (L3 smoke on a Vercel preview) waits for Luis to wire Vercel and must finish before Phase 4.
 
 Quota: at the start of Phase 3 the 5-hour window was 55% and the weekly window 82%; after task 4 they are 74% and 85% (from `get_usage`). Measured cost per headless task (list price): task 2 0.60 USD, task 3 0.48 USD, task 4 0.57 USD. Stop rule: weekly above 90% or the 5-hour window used up means mark `paused-quota` here and resume next window.
 
