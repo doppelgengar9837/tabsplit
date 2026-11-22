@@ -11,3 +11,6 @@ test-results
 .claude/settings.local.json
 # worktrees created by Claude Code (EnterWorktree)
 .claude/worktrees/
+
+# local pnpm store created by pnpm runs inside the repo
+.pnpm-store/
